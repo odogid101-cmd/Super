@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Super Tech | Portfolio</title>
+
+<style>
+:root {
+  --primary: #6366f1;
+  --accent: #22d3ee;
+  --bg: #0f172a;
+  --card: #1e293b;
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --radius: 20px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --text-muted: #64748b;
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(12px);
+  background: rgba(15,23,42,0.7);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+@media (prefers-color-scheme: light) {
+  nav { background: rgba(248,250,252,0.7); }
+}
+.nav-wrap {
+  max-width: 1100px;
+  margin: auto;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo { font-weight: 700; font-size: 18px; color: var(--primary); }
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 14px;
+  transition: color 0.3s;
+}
+nav a:hover { color: var(--primary); }
+
+/* HERO */
+.hero {
+  max-width: 1100px;
+  margin: auto;
+  padding: 35px 24px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.hero-img img {
+  width: 80%;
+  max-width: 300px;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border: 4px solid var(--primary);
+  box-shadow: 0 20px 60px rgba(99,102,241,0.3);
+}
+.hero h1 {
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.hero p {
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  font-size: 16px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(99,102,241,0.4);
+}
+
+/* SERVICES GRID */
+section { max-width: 1100px; margin: auto; padding: 60px 24px; }
+.section-title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 40px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 28px;
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(99,102,241,0.2);
+}
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 18px;
+}
+.card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: var(--primary);
+}
+.card p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+.card ul {
+  font-size: 13px;
+  color: var(--text-muted);
+  padding-left: 18px;
+  margin-bottom: 18px;
+}
+
+/* CTA BOX */
+.cta {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: var(--radius);
+  padding: 50px 24px;
+  text-align: center;
+  color: white;
+  margin-top: 40px;
+}
+.cta h2 { font-size: 28px; margin-bottom: 12px; }
+.cta p { opacity: 0.9; margin-bottom: 24px; }
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 30px 24px;
+  color: var(--text-muted);
+  font-size: 10px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; text-align: center; }
+  .hero-img { order: -1; }
+  .hero-img img { margin: auto; }
+  .grid { grid-template-columns: 1fr; }
+  nav a { display: none; }
+}
+
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="nav-wrap">
+    <div class="logo">Super Tech</div>
+    <div>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="reveal">
+    <h1>Videos, Designs & E-books that Convert</h1>
+    <p>We help brands stand out online with high-quality visuals, motion, and content that drives real engagement.</p>
+    <a href="https://wa.me/+2347062429544" class="btn">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" alt=""> For More Info
+    </a>
+  </div>
+  <div class="hero-img reveal">
+    <img src="https://i.postimg.cc/T1pqzWQ6/IMG-20260625-WA0019.jpg" alt="Super Tech">
+  </div>
+</header>
+
+<section id="services">
+  <h2 class="section-title reveal">What We Offer</h2>
+  <div class="grid">
+    
+    <div class="card reveal">
+      <img src="https://i.postimg.cc/gjnqC64b/IMG-20260625-WA0016.jpg" alt="Video Editing">
+      <h3>Video Editor & Animator</h3>
+      <p>Producing high-quality videos and animations that bring your vision to life and drive engagement.</p>
+      <ul>
+        <li>Reels & short-form content</li>
+        <li>Motion graphics & 2D animation</li>
+        <li>YouTube & ad edits</li>
+      </ul>
+      <a href="https://wa.me/+2347062429544" class="btn" style="padding:10px 18px; font-size:13px">Get InTouch</a>
+    </div>
+
+    <div class="card reveal">
+      <img src="https://i.postimg.cc/fyJjG05h/IMG-20260625-WA0017.jpg" alt="Graphic Design">
+      <h3>Graphic Designer</h3>
+      <p>Creating eye-catching designs that strengthen your brand and communicate your message effectively.</p>
+      <ul>
+        <li>Brand identity & logos</li>
+        <li>Social media posts</li>
+        <li>Flyers & marketing materials</li>
+      </ul>
+      <a href="https://wa.me/+2347062429544" class="btn" style="padding:10px 18px; font-size:13px">Get InTouch</a>
+    </div>
+
+    <div class="card reveal">
+      <img src="https://i.postimg.cc/wM7cCsFH/IMG-20260625-WA0018.jpg" alt="E-Book Writing">
+      <h3>E-Book Writer</h3>
+      <p>Turning ideas into compelling e-books that educate, inspire, and convert readers.</p>
+      <ul>
+        <li>Ghostwriting & editing</li>
+        <li>Lead magnet e-books</li>
+        <li>Formatting & design</li>
+      </ul>
+      <a href="https://wa.me/+2347062429544" class="btn" style="padding:10px 18px; font-size:13px">Get InTouch</a>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact">
+  <div class="cta reveal">
+    <h2>Let’s Work Together</h2>
+    <p>Got a project in mind? Join our community or message us on WhatsApp.</p>
+    <a href="https://whatsapp.com/channel/0029Vb78sTZ2phHUKEtSe02M" target="_blank" class="btn" style="background:white; color:var(--primary)">
+      Follow Channel
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 DC. Powered by <a href="https://wa.me/+23491365738" style="color:var(--primary); text-decoration:none">DarkCode Academy</a></p>
+</footer>
+
+<script>
+// Scroll reveal
+const reveals = document.querySelectorAll(".reveal");
+function revealOnScroll() {
+  reveals.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if (top < window.innerHeight - 100) {
+      el.classList.add("active");
+    }
+  });
+}
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+</script>
+
+</body>
+</html>
